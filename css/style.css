@@ -1,3 +1,50 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
     background-color: #E4EAFA;
+    font-family: 'Montserrat', sans-serif;
+    margin: auto;
+    margin-top: 40px;
+    align-content: center;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.main-link {
+    background-color: inherit;
+    float: left;
+    padding: 10px 20px;
+}
+
+.account-link {
+    background-color: inherit;
+    float: right;
+    padding: 10px 20px;
+}
+
+.create-form-box {
+    padding: 100px;
+    border-radius: 100%;
+    background-color: white;
+    background-image: url("/img/plus-bg.svg");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.box {
+    margin: auto;
+    max-width: fit-content;
+    text-align: center;
+    padding: 50px 0px;
+}
+
+.box > a {
+    text-decoration: none;
+    font-size: 24px;
 }
