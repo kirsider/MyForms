@@ -4,7 +4,7 @@ body {
     background-color: #E4EAFA;
     font-family: 'Montserrat', sans-serif;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 60px;
     align-content: center;
 }
 
@@ -18,13 +18,22 @@ header {
 .main-link {
     background-color: inherit;
     float: left;
-    padding: 10px 20px;
+    padding: 10px 30px;
+    font-size: 1.5em;
+}
+
+.main-link > a {
+    text-decoration: none;
 }
 
 .account-link {
     background-color: inherit;
     float: right;
-    padding: 10px 20px;
+    padding: 20px;
+    margin: 5px 30px;
+    font-size: 1.5em;
+    background-color: gainsboro;
+    border-radius: 100%;
 }
 
 .create-form-box {
@@ -47,4 +56,36 @@ header {
 .box > a {
     text-decoration: none;
     font-size: 24px;
+}
+
+.templates-box{
+    margin: auto;
+    max-width: fit-content;
+}
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/*
+.grid-wrapper > * {
+    border-width: 1;
+    border-style: solid;
+}
+*/
+
+.grid-wrapper > a {
+    text-decoration: none;
+    padding: 100px;
+    margin: 10px 5px;
+    border-radius: 10%;
+    background-color: white;
+    border-width: 1%;
+    border-style: solid;
+    border-color: white;
+}
+
+.grid-wrapper > a:hover {
+    border-color: blueviolet;
 }
