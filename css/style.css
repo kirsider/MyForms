@@ -4,7 +4,7 @@ body {
     background-color: #E4EAFA;
     font-family: 'Montserrat', sans-serif;
     margin: auto;
-    margin-top: 60px;
+    margin-top: 80px;
     align-content: center;
 }
 
@@ -20,6 +20,7 @@ header {
     float: left;
     padding: 10px 30px;
     font-size: 1.5em;
+    font-weight: bolder;
 }
 
 .main-link > a {
@@ -89,3 +90,63 @@ header {
 .grid-wrapper > a:hover {
     border-color: blueviolet;
 }
+
+.sign-in-box {
+    margin: auto;
+    width: fit-content;
+    background-color: white;
+    border-radius: 5%;
+    padding: 20px;
+    text-align: center;
+}
+
+.sign-in-box > p {
+    margin: 5px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.sign-in-form {
+    margin: 20px 50px;
+}
+
+.sign-in-form > input {
+    border-color: black;
+    border-style: solid;
+    border-width: 1%;
+    margin: 5px;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 3px 8px;
+}
+
+.sign-in-form > input {
+    outline: none;
+}
+
+.sign-in-form > button {
+    background-color: blueviolet;
+    font-family: inherit;
+    font-size: 24px;
+    margin: 10px;
+    padding: 5px 50px;
+    font-weight: bolder;
+    border-radius: 9%/30%;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    transition: background-color 0.2s ease-out;
+}
+
+.sign-in-form > button:hover {
+    background-color: #5A189A;
+}
+
+.sign-in-form > button:focus {
+    outline: none;
+}
+
+.sign-in-form > button:active {
+    background-color: #3C096C;
+}
+
