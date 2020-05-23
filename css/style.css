@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+/*
+* {
+    border-width: 1;
+    border-style: solid;
+    border-color: grey;
+}
+*/
+
 body {
     background-color: #E4EAFA;
     font-family: 'Montserrat', sans-serif;
@@ -69,13 +77,6 @@ header {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-/*
-.grid-wrapper > * {
-    border-width: 1;
-    border-style: solid;
-}
-*/
-
 .grid-wrapper > a {
     text-decoration: none;
     padding: 100px;
@@ -91,7 +92,7 @@ header {
     border-color: blueviolet;
 }
 
-.sign-in-box {
+.sign-box {
     margin: auto;
     width: fit-content;
     background-color: white;
@@ -100,17 +101,18 @@ header {
     text-align: center;
 }
 
-.sign-in-box > p {
+.sign-box > p {
     margin: 5px;
     font-size: 2em;
     font-weight: bold;
 }
 
-.sign-in-form {
-    margin: 20px 50px;
+.sign-form {
+    margin: 20px 50px 5px 50px;
 }
 
-.sign-in-form > input {
+.sign-form > input {
+    width: 300px;
     border-color: black;
     border-style: solid;
     border-width: 1%;
@@ -120,33 +122,183 @@ header {
     padding: 3px 8px;
 }
 
-.sign-in-form > input {
+.sign-form > input {
     outline: none;
 }
 
-.sign-in-form > button {
+.sign-form > button, .save-form-btn{
     background-color: blueviolet;
     font-family: inherit;
-    font-size: 24px;
-    margin: 10px;
+    font-size: 28px;
+    margin: 15px;
     padding: 5px 50px;
     font-weight: bolder;
-    border-radius: 9%/30%;
+    border-radius: 10%/30%;
+    border-style: solid;
+    border-color: transparent;
+    color: white;
+    transition: background-color 0.2s ease-out;
+}
+
+.sign-form > button:hover, .add-option-btn:hover, .save-form-btn:hover {
+    background-color: #5A189A;
+}
+
+.sign-form > button:focus, .add-option-btn:focus, .save-form-btn:focus {
+    outline: none;
+}
+
+.sign-form > button:active, .add-option-btn:active, .save-form-btn:active{
+    background-color: #3C096C;
+}
+
+.form-box {
+    margin: auto;
+    width: fit-content;
+}
+
+.form-header-box {
+    background-color: white;
+    border-radius: 5%/20%;
+}
+
+.form-header-box > p {
+    font-size: 1.5em;
+    font-weight: 700;
+    padding: 15px 0px;
+    margin: 5px 20px;
+}
+
+.description-box {
+    font-size: 1em;
+    font-weight: normal;
+    margin: 15px 20px;
+    padding-bottom: 15px;
+}
+
+.edit-form {
+    text-align: center;
+}
+
+.question-box:hover .control-btns{
+    visibility: initial;
+}
+
+.main-question-box {
+    background-color: white;
+    border-radius: 5%/15%;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.question-set-box{
+    margin: 20px 20px;
+    padding: 5px 0px;
+}
+
+.question-set-box > input { 
+    border-color: black;
+    border-style: solid;
+    border-width: 1%;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 3px 8px;
+    margin-right: 15px;
+}
+
+.question-set-box > select {
+    border-color: black;
+    border-style: solid;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 3px 8px;
+}
+
+.option-box {
+    display: flex;
+    padding: 5px 0px;
+    margin: 10px 20px;
+}   
+
+.option-box > input {
+    width: 85%;
+    border-color: black;
+    border-style: solid;
+    border-width: 1%;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 3px 8px;
+}
+
+.delete-option-btn {
+    background-color: transparent;
+    background-image: url("/img/delete-option.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 15px;
+    margin-left: 10px;
+    outline: none;
+    border: none;   
+}
+
+.delete-option-btn:active {
+    filter: opacity(30%);
+}
+
+.add-option-btn {
+    background-color: blueviolet;
+    font-family: inherit;
+    font-size: 20px;
+    margin: 15px;
+    padding: 5px 50px;
+    font-weight: bolder;
+    border-radius: 5%/20%;
     border-style: solid;
     border-color: white;
     color: white;
     transition: background-color 0.2s ease-out;
 }
 
-.sign-in-form > button:hover {
-    background-color: #5A189A;
+.control-btns {
+    margin: 5px;
+    visibility: hidden;
 }
 
-.sign-in-form > button:focus {
+.up-question-btn, .add-question-btn, .delete-question-btn, .down-question-btn {
+    padding: 20px;
+    margin: 5px;
+    border-radius: 100%;
+    background-color: white;
+    border: none;
     outline: none;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: background-color 0.2s ease-out;
 }
 
-.sign-in-form > button:active {
-    background-color: #3C096C;
+.up-question-btn:hover, .add-question-btn:hover, .delete-question-btn:hover, .down-question-btn:hover {
+    background-color:gainsboro;
 }
 
+.up-question-btn:active, .add-question-btn:active, .delete-question-btn:active, .down-question-btn:active {
+    background-color: gray;
+}
+
+.up-question-btn {
+    background-image: url("/img/updown-arrow.svg");
+    transform: scaleY(-1);
+}
+
+.down-question-btn {
+    background-image: url("/img/updown-arrow.svg");
+}
+
+.add-question-btn {
+    background-image: url("/img/plus-bg.svg");
+}
+
+.delete-question-btn {
+    background-image: url("/img/minus.svg");
+}

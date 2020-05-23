@@ -15,17 +15,17 @@
         <a class="account-link" href='/SignIn.html'></a>
     </header>
     <main>
-       <div>
-           <div>
+       <div class="form-box">
+           <div class="form-header-box">
                <p>Form 1</p>
-               <div>
+               <div class="description-box">
                    Description
                </div>
            </div>
-           <form>
-               <div>
-                   <div>
-                       <div>
+           <form class="edit-form">
+               <div class="question-box">
+                   <div class="main-question-box">
+                       <div class="question-set-box">
                            <input type="text" placeholder="Question name">
                            <select>
                                <option>text answer</option>
@@ -33,18 +33,21 @@
                                <option>multiple choice</option>
                            </select>
                        </div>
-                       <div>
+                       <div class="option-box">
                            <input type="text" placeholder="option/text">
-                           <button type="button">-</button>
+                           <button class="delete-option-btn" type="button"></button>
                        </div>
-                       <button type="button">Add variant</button>
+                       <button class="add-option-btn" type="button">Add variant</button>
                    </div>
-                   <div>
-                       rightside buttons
+                   <div class="control-btns">
+                       <button class="up-question-btn" type="button"></button>
+                       <button class="add-question-btn" type="button"></button>
+                       <button class="delete-question-btn" type="button"></button>
+                       <button class="down-question-btn" type="button"></button>
                    </div>
                 </div>
 
-               <button type="button">Save</button>
+               <button class="save-form-btn" type="button">Save</button>
            </form>
        </div>
     </main>
