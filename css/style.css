@@ -7,7 +7,6 @@
     border-color: grey;
 }
 */
-
 body {
     background-color: #E4EAFA;
     font-family: 'Montserrat', sans-serif;
@@ -37,7 +36,6 @@ header {
 }
 
 .account-link {
-    background-color: inherit;
     float: right;
     padding: 20px;
     margin: 5px 30px;
@@ -98,8 +96,12 @@ header {
     width: fit-content;
     background-color: white;
     border-radius: 5%;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .sign-box > p {
@@ -420,10 +422,155 @@ header {
     border-radius: 100%;
 }
 
-@media only screen and (max-width: 768px) {
-    .box {
-        margin: 0px 20px;
-        text-align: center;
-        padding: 50px 0px;
+@media screen and (max-device-width: 768px) {
+    body {
+        margin-top: 160px;
+    }
+
+    .grid-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .main-link { 
+        font-size: 3em;
+    }
+
+    .account-link {
+        padding: 30px;
+        margin: 10px 30px;
+    }
+
+    .create-form-box {
+        padding: 160px;
+    }
+
+
+    .box > a {
+        text-decoration: none;
+        font-size: 48px;
+    }
+
+    .grid-wrapper > a {
+        padding: 160px;
+        margin: 15px 20px;
+        font-size: 48px;
+    }
+
+    h3 {
+        font-size: 48px;
+    }
+    
+    .sign-box > p {
+        font-size: 4em;
+    }
+
+    .sign-form > input {
+        width: 600px;
+        font-size: 36px;
+        margin: 20px 0px;
+    }
+
+    .sign-form > button, .save-form-btn, .send-btn{
+        font-size: 3em;
+    }
+
+    .sign-box > a {
+        font-size: 2em;
+    }
+    
+    .form-header-box > p {
+        font-size: 3em;
+        margin: 5px 40px;
+    }
+
+    .description-box {
+        font-size: 2em;
+        margin: 15px 40px;
+    }
+
+    .main-question-box {
+        margin: 30px 0px;
+    }
+
+    .question-set-box{
+        margin: 30px 30px;
+        padding: 5px 0px;
     }    
+
+    .question-set-box > input { 
+        font-size: 36px;
+    }
+
+    .question-set-box > select { 
+        font-size: 36px;
+    }
+
+    .option-box {
+        margin: 10px 30px;
+    }
+
+    .option-box > input {
+        font-size: 36px;
+    }
+
+    .delete-option-btn {
+        padding: 24px;
+    }
+
+    .add-option-btn {
+        font-size: 36px;
+    }
+
+    .control-btns {
+        visibility: visible;
+    }
+
+    .up-question-btn, .add-question-btn, .delete-question-btn, .down-question-btn {
+        padding: 32px;
+    }
+    
+    .question-title-box {
+        font-size: 36px;
+        margin: 15px 30px;
+    }
+
+    .text-answer-box {
+        margin: 0px 30px 20px;
+    }
+
+    .text-answer-box > input { 
+        width: 800px;
+        font-size: 32px;
+    }
+    
+    .checkbox-answer-box, .radio-answer-box {
+        padding: 5px 20px;
+    }
+    
+    .label-container {
+        padding-left: 50px;
+        font-size: 32px;
+    }
+
+    .checkmark, .radiomark {
+        height: 36px;
+        width: 36px;
+    }
+
+    .label-container .checkmark:after { 
+        left: 12px;
+        top: 8px;
+        width: 6px;
+        height: 14px;
+        border-width: 0 5px 5px 0px;
+    }
+
+    .label-container .radiomark:after {
+        left: 5px;
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        border-width: 5px;
+    }
 }
