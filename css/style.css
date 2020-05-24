@@ -21,6 +21,7 @@ header {
     top: 0;
     width: 100%;
     background-color: white;
+    z-index: 100;
 }
 
 .main-link {
@@ -120,13 +121,10 @@ header {
     font-size: 20px;
     font-family: inherit;
     padding: 3px 8px;
-}
-
-.sign-form > input {
     outline: none;
 }
 
-.sign-form > button, .save-form-btn{
+.sign-form > button, .save-form-btn, .send-btn{
     background-color: blueviolet;
     font-family: inherit;
     font-size: 28px;
@@ -140,15 +138,18 @@ header {
     transition: background-color 0.2s ease-out;
 }
 
-.sign-form > button:hover, .add-option-btn:hover, .save-form-btn:hover {
+.sign-form > button:hover, .add-option-btn:hover, 
+.save-form-btn:hover, .send-btn:hover {
     background-color: #5A189A;
 }
 
-.sign-form > button:focus, .add-option-btn:focus, .save-form-btn:focus {
+.sign-form > button:focus, .add-option-btn:focus, 
+.save-form-btn:focus, .send-btn:focus {
     outline: none;
 }
 
-.sign-form > button:active, .add-option-btn:active, .save-form-btn:active{
+.sign-form > button:active, .add-option-btn:active,
+.save-form-btn:active, .send-btn:active{
     background-color: #3C096C;
 }
 
@@ -185,10 +186,13 @@ header {
 }
 
 .main-question-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     background-color: white;
     border-radius: 5%/15%;
     padding: 5px 10px;
-    text-align: center;
+    margin: 10px 0px;
 }
 
 .question-set-box{
@@ -221,7 +225,7 @@ header {
 }   
 
 .option-box > input {
-    width: 85%;
+    width: 100%;
     border-color: black;
     border-style: solid;
     border-width: 1%;
@@ -247,13 +251,14 @@ header {
 }
 
 .add-option-btn {
+    align-self: center;
     background-color: blueviolet;
     font-family: inherit;
     font-size: 20px;
     margin: 15px;
     padding: 5px 50px;
     font-weight: bolder;
-    border-radius: 5%/20%;
+    border-radius: 4%/20%;
     border-style: solid;
     border-color: white;
     color: white;
@@ -301,4 +306,124 @@ header {
 
 .delete-question-btn {
     background-image: url("/img/minus.svg");
+}
+
+.send-form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.question-title-box {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0px 0px;
+    margin: 15px 10px;
+}
+
+.text-answer-box{
+    display: flex;   
+    padding: 5px 0px;
+    margin: 10px 10px;
+}
+
+.text-answer-box > input {
+    width: 400px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1%;
+    font-size: 18px;
+    font-family: inherit;
+    padding: 3px 8px;
+}
+
+.checkbox-answer-box, .radio-answer-box {
+    padding: 5px 0px;
+    margin: 0px 10px 10px;
+}
+
+.send-btn {
+    align-self: center;
+}
+
+.label-container {
+    display: block;
+    position: relative;
+    padding-left: 30px; 
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.label-container input {
+   display: none;
+}
+  
+.checkmark {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    border-radius: 20%;
+    background-color: #eee;
+}
+
+.radiomark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    border-radius: 100%;
+    background-color: #eee;
+}
+
+.label-container:hover input ~ .checkmark,
+.label-container:hover input ~ .radiomark {
+    background-color: #ccc;
+}
+
+.label-container input:checked ~ .checkmark,
+.label-container input:checked ~ .radiomark {
+    background-color: blueviolet;
+}
+  
+.checkmark:after, .radiomark:after {
+    content: "";
+    position: absolute;
+    display: none;  
+}
+  
+.label-container input:checked ~ .checkmark:after,
+.label-container input:checked ~ .radiomark:after {
+    display: block;
+}
+  
+.label-container .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 4px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0px;
+    transform: rotate(45deg);
+}
+
+.label-container .radiomark:after {
+    left: 4px;
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    border: solid white;
+    border-width: 3px 3px 3px 3px;
+    border-radius: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .box {
+        margin: 0px 20px;
+        text-align: center;
+        padding: 50px 0px;
+    }    
 }
