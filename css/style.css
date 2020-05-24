@@ -31,8 +31,12 @@ header {
     font-weight: bolder;
 }
 
-.main-link > a {
+a {
     text-decoration: none;
+}
+
+a, a:hover, a:visited {
+    color: #5A189A;
 }
 
 .account-link {
