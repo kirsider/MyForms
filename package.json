@@ -1,0 +1,14 @@
+{
+  "name": "forms2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kirsider <kirill.sidorenko.2013@mail.ru>",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^7.14.5"
+  }
+}
