@@ -2,7 +2,7 @@ const Utils = {
     //  Parse a url and break it into resource, id and verb
     parseRequestURL : () => {
 
-        let url = location.hash.slice(1).toLowerCase() || '/';
+        let url = location.hash.slice(1) || '/';
         let r = url.split("/")
         let request = {
             resource    : null,

@@ -11,11 +11,8 @@ let Home = {
   
       <div class="templates-box">
         <h3>Your Forms</h3>
-        <div class="grid-wrapper">
-          <a href="/Form.html">1</a>
-          <a href="t2.html">2</a>
-          <a href="t3.html">3</a>
-          <a href="t4.html">4</a>
+        <div id="user-forms" class="grid-wrapper">
+          
         </div>
   
       </div>
@@ -24,7 +21,26 @@ let Home = {
     }, 
     
     after_render: async () => {
-
+        const userForms = document.getElementById("user-forms");
+        
+        firebase.auth().onAuthStateChanged(async firebaseUser => { 
+            if (firebaseUser) {
+                const snapshot = await firebase.database().ref('users/' + firebaseUser.uid + '/forms').once('value');
+                const formIds = Object.values(snapshot.val());
+                
+                userForms.innerHTML = ``;
+                for (const fid of formIds) {
+                    const a = document.createElement("a");
+                    const fname = (await firebase.database().ref('forms/' + fid + '/fname').once('value')).val();
+                    a.setAttribute("href", "/#/form/" + fid);
+                    a.innerHTML = fname;
+                    userForms.appendChild(a);
+                }
+            } else {
+               
+                userForms.innerHTML = ``;
+            }
+        }) 
     }
 
 }

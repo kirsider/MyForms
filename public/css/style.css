@@ -187,6 +187,13 @@ a, a:hover, a:visited {
     margin: 15px 30px;
 }
 
+.form-header-box > p {
+    font-size: 1.5em;
+    font-weight: 700;
+    padding: 15px 0px;
+    margin: 5px 20px;
+}
+
 #form-description-input {
     font-size: 14px;
 }

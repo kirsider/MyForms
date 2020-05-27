@@ -4,6 +4,7 @@ import Home from './views/pages/Home.js'
 import SignIn from './views/pages/SignIn.js'
 import SignUp from './views/pages/SignUp.js'
 import NewForm from './views/pages/NewForm.js'
+import Form from './views/pages/Form.js'
 import Error404 from './views/pages/Error404.js'
 
 import Header from './views/components/Header.js'
@@ -15,7 +16,8 @@ const routes = {
     '/': Home,
     '/signin': SignIn,
     '/signup': SignUp,
-    '/newform': NewForm
+    '/newform': NewForm,
+    '/form/:id': Form
 }
 
 const router = async () => {
