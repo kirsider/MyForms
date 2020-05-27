@@ -1,18 +1,18 @@
 let NewForm = {
-    render: async () => { 
+    render: async () => {
         return `
             <div class="form-box">
                 <div class="form-header-box">
                     <input id="form-name-input" type="text" placeholder="Form name">
                     <input id="form-description-input" type="text" placeholder="Description">
                 </div>
-                <form class="edit-form">
+                <form id="form" class="edit-form">
                     <ul id="questions-list" class="questions-list">
                         <li class="question-box">
                             <div class="main-question-box">
                                 <div class="question-set-box">
-                                    <input type="text" placeholder="Question name">
-                                    <select>
+                                    <input name="qname" type="text" placeholder="Question name">
+                                    <select name="qtype">
                                         <option>text answer</option>
                                         <option>single choice</option>
                                         <option>multiple choice</option>
@@ -20,7 +20,7 @@ let NewForm = {
                                 </div>
                                 <ul class="options-list">
                                     <li class="option-box">
-                                        <input type="text" placeholder="option/text">
+                                        <input name="option" type="text" placeholder="option/text">
                                     </li>
                                 </ul>
                                 <button class="add-option-btn" type="button">Add option</button>
@@ -48,7 +48,7 @@ let NewForm = {
             select.addEventListener('change', onChangeSelect);
         }
 
-        const add_option_btns = document.getElementsByClassName("add-option-btns");
+        const add_option_btns = document.getElementsByClassName("add-option-btn");
         for (const btn of add_option_btns) {
             btn.addEventListener('click', onAddOptionBtnClick);
         }
@@ -79,8 +79,8 @@ let NewForm = {
             new_li.setAttribute("class", "question-box");
             new_li.innerHTML = `<div class="main-question-box">
                 <div class="question-set-box">
-                    <input type="text" placeholder="Question name">
-                    <select>
+                    <input name="qname" type="text" placeholder="Question name">
+                    <select name="qtype">
                         <option>text answer</option>
                         <option>single choice</option>
                         <option>multiple choice</option>
@@ -88,7 +88,7 @@ let NewForm = {
                 </div>
                 <ul class="options-list">
                     <li class="option-box">
-                        <input type="text" placeholder="option/text">
+                        <input name="option" type="text" placeholder="option/text">
                     </li>
                 </ul>
                 <button class="add-option-btn" type="button">Add option</button>
@@ -164,7 +164,7 @@ let NewForm = {
             if (e.currentTarget.options[0].selected) {
                 options_list.innerHTML = `
                     <li class="option-box">
-                        <input type="text" placeholder="option/text">
+                        <input name="option" type="text" placeholder="option/text">
                     </li>
                 `;
                 add_option_btn.style.display = "none";
@@ -173,7 +173,7 @@ let NewForm = {
                 let li = document.createElement("li");
                 li.setAttribute("class", "option-box");
                 li.innerHTML = `
-                    <input type="text" placeholder="option/text">
+                    <input name="option" type="text" placeholder="option/text">
                     <button class="delete-option-btn" type="button"></button>
                 `;
                 options_list.appendChild(li);
@@ -189,11 +189,10 @@ let NewForm = {
 
         function onAddOptionBtnClick(e) {
             const options_list = e.currentTarget.previousElementSibling;
-            
             let li = document.createElement("li");
             li.setAttribute("class", "option-box");
             li.innerHTML = `
-                <input type="text" placeholder="option/text">
+                <input name="option" type="text" placeholder="option/text">
                 <button class="delete-option-btn" type="button"></button>
             `;
             options_list.appendChild(li);
@@ -204,6 +203,46 @@ let NewForm = {
                 })
             }
         }
+
+        const save_form_btn = document.getElementById("save-form-btn");
+        const form_name_input = document.getElementById("form-name-input");
+        const form_description_input = document.getElementById("form-description-input");
+
+        save_form_btn.addEventListener('click', () => {
+            let form = {
+                "uid": firebase.auth().currentUser.uid,
+                "fname": form_name_input.value,
+                "description": form_description_input.value,
+                "questions": []
+            } 
+
+            const questionForm = document.getElementById("form");
+            const formData = new FormData(questionForm);
+            let cnt = -1;
+            for (let [name, value] of formData) {
+                if (name == "qname") {
+                    form["questions"].push({
+                        "qname": value, 
+                        "type": "",
+                        "options": []
+                    })
+                    cnt++;
+                } else if (name == "qtype") {
+                    form["questions"][cnt]["type"] = value;
+                } else if (name == "option") {
+                    form["questions"][cnt]["options"].push(value);
+                }
+                
+            }
+     
+
+            const formId = firebase.database().ref('forms/').push(form).key;
+            console.log(formId);
+            firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/forms').push(formId);
+
+            window.location.href = "/#/";
+            alert("Form has been created!");
+        })
     }
 }
 
