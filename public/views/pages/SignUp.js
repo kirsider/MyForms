@@ -31,6 +31,7 @@ let SignUp = {
                 const auth = firebase.auth();
                 const promise = auth.createUserWithEmailAndPassword(email_input.value, pass_input.value);
                 promise.catch(e => alert(e.message));
+                window.location.href = '/#/';
             }
 
         })

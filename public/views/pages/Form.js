@@ -8,7 +8,6 @@ let Form = {
 
         let questions = ``;
         for (const i in form['questions']) {
-            console.log(form['questions'][i]);
             questions += `
             <div class="main-question-box">
                 <div class="question-title-box">
@@ -88,7 +87,6 @@ let Form = {
             }
 
             for (let [name, value] of formData) {
-                console.log(name + ": " + value);
                 result["answers"][name] = result["answers"][name] ? result["answers"][name] : [];
                 result["answers"][name].push(value);
             }

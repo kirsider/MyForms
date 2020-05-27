@@ -1,15 +1,16 @@
 "use strict";
 
-import Home from './views/pages/Home.js'
-import SignIn from './views/pages/SignIn.js'
-import SignUp from './views/pages/SignUp.js'
-import NewForm from './views/pages/NewForm.js'
-import Form from './views/pages/Form.js'
-import Error404 from './views/pages/Error404.js'
+import Home from './views/pages/Home.js';
+import SignIn from './views/pages/SignIn.js';
+import SignUp from './views/pages/SignUp.js';
+import NewForm from './views/pages/NewForm.js';
+import Form from './views/pages/Form.js';
+import FormResult from './views/pages/FormResult.js';
+import Error404 from './views/pages/Error404.js';
 
-import Header from './views/components/Header.js'
+import Header from './views/components/Header.js';
 
-import Utils from './services/Utils.js'
+import Utils from './services/Utils.js';
 
 
 const routes = {
@@ -17,7 +18,8 @@ const routes = {
     '/signin': SignIn,
     '/signup': SignUp,
     '/newform': NewForm,
-    '/form/:id': Form
+    '/form/:id': Form,
+    '/formresult/:id': FormResult
 }
 
 const router = async () => {

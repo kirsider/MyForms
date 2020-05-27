@@ -68,6 +68,10 @@ a, a:hover, a:visited {
     font-size: 24px;
 }
 
+.unsigned-box {
+    font-size: 24px;
+}
+
 .templates-box{
     margin: auto;
     max-width: fit-content;
@@ -144,6 +148,7 @@ a, a:hover, a:visited {
 
 #logout-btn {
     margin: 0;
+    margin-top: 5px;
     font-size: 18px;
     border-radius: 10px/10px;
     padding: 0px 20px;
@@ -357,7 +362,8 @@ a, a:hover, a:visited {
 }
 
 .text-answer-box{
-    display: flex;   
+    display: flex;  
+    flex-direction: column;
     padding: 5px 0px;
     margin: 10px 10px;
 }
@@ -387,6 +393,10 @@ a, a:hover, a:visited {
     padding-left: 30px; 
     margin-bottom: 12px;
     cursor: pointer;
+    font-size: 18px;
+}
+
+.answer-container {
     font-size: 18px;
 }
 
@@ -461,6 +471,14 @@ a, a:hover, a:visited {
         margin-top: 160px;
     }
 
+    .unsigned-box {
+        font-size: 36px;
+    }
+
+    .templates-box > h3 {
+        text-align: center;
+    }
+
     .grid-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -504,8 +522,12 @@ a, a:hover, a:visited {
         margin: 20px 0px;
     }
 
-    .sign-form > button, .save-form-btn, .send-btn{
+    .sign-form > button, .save-form-btn, .send-btn {
         font-size: 3em;
+    }
+
+    #logout-btn {
+        font-size: 36px;
     }
 
     .sign-box > a {
@@ -515,6 +537,14 @@ a, a:hover, a:visited {
     .form-header-box > p {
         font-size: 3em;
         margin: 5px 40px;
+    }
+
+    .form-header-box > input {
+        font-size: 36px;
+    }
+
+    #form-description-input {
+        font-size: 24px;
     }
 
     .description-box {
@@ -570,6 +600,10 @@ a, a:hover, a:visited {
 
     .text-answer-box {
         margin: 0px 30px 20px;
+    }
+
+    .answer-container {
+        font-size: 32px;
     }
 
     .text-answer-box > input { 
