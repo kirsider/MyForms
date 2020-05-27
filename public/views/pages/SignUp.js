@@ -10,7 +10,7 @@ let SignUp = {
                 <button id="signup_btn" type="button">Sign up</button>
             </form>
         </div>
-        `
+        `;
     },
 
     after_render: async () => {

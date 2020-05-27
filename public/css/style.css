@@ -170,15 +170,25 @@ a, a:hover, a:visited {
 }
 
 .form-header-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     background-color: white;
     border-radius: 5%/20%;
 }
 
-.form-header-box > p {
-    font-size: 1.5em;
-    font-weight: 700;
-    padding: 15px 0px;
-    margin: 5px 20px;
+.form-header-box > input {
+    border-color: black;
+    border-style: solid;
+    border-width: 1%;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 3px 8px;
+    margin: 15px 30px;
+}
+
+#form-description-input {
+    font-size: 14px;
 }
 
 .description-box {
@@ -229,6 +239,12 @@ a, a:hover, a:visited {
     padding: 3px 8px;
 }
 
+.options-list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
 .option-box {
     display: flex;
     padding: 5px 0px;
@@ -246,6 +262,7 @@ a, a:hover, a:visited {
 }
 
 .delete-option-btn {
+    display: none;
     background-color: transparent;
     background-image: url("/img/delete-option.svg");
     background-size: 100%;
@@ -262,6 +279,7 @@ a, a:hover, a:visited {
 }
 
 .add-option-btn {
+    display: none;
     align-self: center;
     background-color: blueviolet;
     font-family: inherit;

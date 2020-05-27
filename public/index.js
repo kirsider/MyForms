@@ -3,7 +3,10 @@
 import Home from './views/pages/Home.js'
 import SignIn from './views/pages/SignIn.js'
 import SignUp from './views/pages/SignUp.js'
+import NewForm from './views/pages/NewForm.js'
 import Error404 from './views/pages/Error404.js'
+
+import Header from './views/components/Header.js'
 
 import Utils from './services/Utils.js'
 
@@ -11,11 +14,16 @@ import Utils from './services/Utils.js'
 const routes = {
     '/': Home,
     '/signin': SignIn,
-    '/signup': SignUp 
+    '/signup': SignUp,
+    '/newform': NewForm
 }
 
 const router = async () => {
+    const header = null || document.getElementById('header-content');
     const main_content = null || document.getElementById("main-content");
+
+    header.innerHTML = await Header.render();
+    await Header.after_render();
 
     let request = Utils.parseRequestURL()
 
