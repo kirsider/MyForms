@@ -10,12 +10,12 @@ let NewForm = {
                 </div>
                 <form id="form" class="edit-form">
                     <ul id="questions-list" class="questions-list">
-                        <li class="question-box">
+                        <li class="question-box" draggable="true">
                             <div class="main-question-box">
                                 <div class="question-set-box">
                                     <input name="qname" type="text" placeholder="Question name">
                                     <select name="qtype">
-                                        <option>text answer</option>
+                                        <option selected>text answer</option>
                                         <option>single choice</option>
                                         <option>multiple choice</option>
                                     </select>
@@ -44,21 +44,162 @@ let NewForm = {
 
     after_render: async () => {
         const questions_list = document.getElementById("questions-list");
-        
+
         setAllEventListeners();
 
-        // Event listeners for all buttons
+        var currentDragElement = null;
+
+        function onDragStart(e) {
+            currentDragElement = e.target;
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function onDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+
+            e.dataTransfer.dropEffect = 'move';
+
+            return false;
+        }
+
+
+        function onDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation(); 
+            }
+
+            if (currentDragElement != this) {
+                const question_boxes = document.getElementsByClassName("question-box"); 
+                
+                let pos1 = 0;
+                let pos2 = 0;
+                let cnt = 0;
+                let li1;
+                let li2;
+
+                for (let i of question_boxes) {
+                    if (i == this) {
+                        pos1 = cnt;
+                        li1 = i
+                    }
+                    if (i == currentDragElement ) {
+                        pos2 = cnt;
+                        li2 = i;
+                    }
+                    cnt++;
+                }
+                const questions = getFormData()['questions'];
+                const q1 = questions[pos1];
+                const q2 = questions[pos2];
+
+                let tmp = li1.innerHTML;
+                li1.innerHTML = li2.innerHTML;
+                li2.innerHTML = tmp;
+
+                const options = ["text answer", "single choice", "multiple choice"];
+
+                li1.querySelector("input").value = q2["qname"];
+                li1.querySelector("select")[options.indexOf(q2["type"])].selected = true;
+                
+                let optlist1 = li1.querySelector(".options-list");
+                optlist1.innerHTML = ``; 
+                if (q2["type"] == "text answer") {
+                    let li = document.createElement("li");
+                    li.setAttribute("class", "option-box")
+                    let inp = document.createElement("input");
+                    inp.name = "option";
+                    inp.placeholder = "placeholder for input";
+                    inp.type = "text";
+                    inp.value = q2["options"][0];
+                    li.appendChild(inp);
+                    optlist1.appendChild(li);
+                } else {
+                    for (let ind of q2["options"]) {
+                        let li = document.createElement("li");
+                        li.setAttribute("class", "option-box")
+                        let inp = document.createElement("input");
+                        inp.name = "option";
+                        inp.placeholder = "option/text";
+                        inp.type = "text";
+                        inp.value = ind;
+
+                        let btn = document.createElement("button");
+                        btn.type = "button";
+                        btn.setAttribute("class", "delete-option-btn");
+                        
+                        li.appendChild(inp);
+                        li.appendChild(btn);
+                        optlist1.appendChild(li);
+
+                        const btns = li.getElementsByClassName("delete-option-btn");
+                        for (const btn of btns) {
+                            btn.addEventListener('click', () => {
+                                li.parentElement.removeChild(li);
+                            })
+                        }
+                    }
+                }
+
+                li2.querySelector("input").value = q1["qname"];
+                li2.querySelector("select")[options.indexOf(q1["type"])].selected = true;
+
+                let optlist2 = li2.querySelector(".options-list");
+                optlist2.innerHTML = ``; 
+                if (q1["type"] == "text answer") {
+                    let li = document.createElement("li");
+                    li.setAttribute("class", "option-box")
+                    let inp = document.createElement("input");
+                    inp.name = "option";
+                    inp.placeholder = "placeholder for input";
+                    inp.type = "text";
+                    inp.value = q1["options"][0];
+                    li.appendChild(inp);
+                    optlist2.appendChild(li);
+                } else {
+                    for (let ind of q1["options"]) {
+                        let li = document.createElement("li");
+                        li.setAttribute("class", "option-box")
+                        let inp = document.createElement("input");
+                        inp.name = "option";
+                        inp.placeholder = "option/text";
+                        inp.type = "text";
+                        inp.value = ind;
+
+                        let btn = document.createElement("button");
+                        btn.type = "button";
+                        btn.setAttribute("class", "delete-option-btn");
+                        
+                        li.appendChild(inp);
+                        li.appendChild(btn);
+                        optlist2.appendChild(li);
+
+                        const btns = li.getElementsByClassName("delete-option-btn");
+                        for (const btn of btns) {
+                            btn.addEventListener('click', () => {
+                                li.parentElement.removeChild(li);
+                            })
+                        }
+                    }
+                }
+            
+                setAllEventListeners();
+            }
+            return false;
+        }
 
         function onAddQuestionBtnClick(e) {
             const current_li = e.currentTarget.parentElement.parentElement;
             let new_li = document.createElement("li");
             new_li.setAttribute("class", "question-box");
+            new_li.setAttribute("draggable", "true");
             new_li.innerHTML = `
             <div class="main-question-box">
                 <div class="question-set-box">
                     <input name="qname" type="text" placeholder="Question name">
                     <select name="qtype">
-                        <option>text answer</option>
+                        <option selected>text answer</option>
                         <option>single choice</option>
                         <option>multiple choice</option>
                     </select>
@@ -152,52 +293,63 @@ let NewForm = {
                 })
             }
         }
+        
+        function setAllDragNDropEventListeners() {
+            const question_boxes = document.getElementsByClassName("question-box"); 
+            for (const box of question_boxes) {
+                box.addEventListener('dragstart', onDragStart, false);
+                box.addEventListener('dragover', onDragOver, false);
+                box.addEventListener('drop', onDrop, false);
+            }
+        }
 
         function setAllEventListeners() {
             const selects = document.getElementsByTagName("select");
             for (const select of selects) {
                 select.addEventListener('change', onChangeSelect);
             }
-    
+
             const add_option_btns = document.getElementsByClassName("add-option-btn");
             for (const btn of add_option_btns) {
                 btn.addEventListener('click', onAddOptionBtnClick);
             }
-    
+
             const add_question_btns = document.getElementsByClassName("add-question-btn");
             for (const btn of add_question_btns) {
                 btn.addEventListener('click', onAddQuestionBtnClick, false);
             }
-    
+
             const delete_question_btns = document.getElementsByClassName("delete-question-btn");
             for (const btn of delete_question_btns) {
                 btn.addEventListener('click', onDeleteQuestionBtnClick, false);
             }
-    
+
             const up_question_btns = document.getElementsByClassName("up-question-btn");
             for (const btn of up_question_btns) {
                 btn.addEventListener('click', onUpQuestionBtnClick, false);
             }
-    
+
             const down_question_btns = document.getElementsByClassName("down-question-btn");
             for (const btn of down_question_btns) {
                 btn.addEventListener('click', onDownQuestionBtnClick, false);
             }
+
+            setAllDragNDropEventListeners();
+            
         }
 
         // save form event
 
-        const save_form_btn = document.getElementById("save-form-btn");
-        const form_name_input = document.getElementById("form-name-input");
-        const form_description_input = document.getElementById("form-description-input");
+        function getFormData() {
+            const form_name_input = document.getElementById("form-name-input");
+            const form_description_input = document.getElementById("form-description-input");
 
-        save_form_btn.addEventListener('click', () => {
             let form = {
                 "uid": firebase.auth().currentUser.uid,
                 "fname": form_name_input.value,
                 "description": form_description_input.value,
                 "questions": []
-            } 
+            }
 
             const questionForm = document.getElementById("form");
             const formData = new FormData(questionForm);
@@ -205,7 +357,7 @@ let NewForm = {
             for (let [name, value] of formData) {
                 if (name == "qname") {
                     form["questions"].push({
-                        "qname": value, 
+                        "qname": value,
                         "type": "",
                         "options": []
                     })
@@ -215,9 +367,16 @@ let NewForm = {
                 } else if (name == "option") {
                     form["questions"][cnt]["options"].push(value);
                 }
-                
+
             }
-     
+
+            return form;
+        }
+        
+        const save_form_btn = document.getElementById("save-form-btn");
+        
+        save_form_btn.addEventListener('click', () => {
+            let form = getFormData();
 
             const formId = firebase.database().ref('forms/').push(form).key;
             console.log(formId);

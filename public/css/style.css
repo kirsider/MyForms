@@ -548,6 +548,16 @@ a, a:hover, a:visited {
         grid-template-columns: 1fr 1fr;
     }
 
+    .grid-wrapper > a {
+        width: 120px;
+        height: 120px;
+    }
+
+    .grid-wrapper > a.skeleton {
+        width: 120px;
+        height: 120px;
+    }
+
     .main-link { 
         font-size: 3em;
     }
