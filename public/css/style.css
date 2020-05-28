@@ -40,12 +40,19 @@ a, a:hover, a:visited {
 }
 
 .account-link {
+    display: box;
+    background-color: inherit;
     float: right;
-    padding: 20px;
-    margin: 5px 30px;
+    padding: 10px 30px;
     font-size: 1.5em;
-    background-color: gainsboro;
-    border-radius: 100%;
+}
+
+#sign-in-link.hide {
+    display: none;
+}
+
+#sign-in-link.show {
+    display: block;
 }
 
 .create-form-box {
@@ -67,6 +74,10 @@ a, a:hover, a:visited {
 
 .box > a {
     text-decoration: none;
+    font-size: 24px;
+}
+
+.unsigned-box {
     font-size: 24px;
 }
 
@@ -130,32 +141,48 @@ a, a:hover, a:visited {
     outline: none;
 }
 
-.sign-form > button, .save-form-btn, .send-btn{
+.sign-form > button, .save-form-btn, .send-btn, #logout-btn{
     background-color: blueviolet;
     font-family: inherit;
     font-size: 28px;
     margin: 15px;
     padding: 5px 50px;
     font-weight: bolder;
-    border-radius: 10%/30%;
+    border-radius: 10px/10px;
     border-style: solid;
     border-color: transparent;
     color: white;
     transition: background-color 0.2s ease-out;
 }
 
+#logout-btn {
+    margin: 0;
+    margin-top: 5px;
+    font-size: 18px;
+    border-radius: 10px/10px;
+    padding: 0px 20px;
+}
+
+#logout-btn.show {
+    display: block;
+}
+
+#logout-btn.hide {
+    display: none;
+}
+
 .sign-form > button:hover, .add-option-btn:hover, 
-.save-form-btn:hover, .send-btn:hover {
+.save-form-btn:hover, .send-btn:hover, #logout-btn:hover {
     background-color: #5A189A;
 }
 
 .sign-form > button:focus, .add-option-btn:focus, 
-.save-form-btn:focus, .send-btn:focus {
+.save-form-btn:focus, .send-btn:focus, #logout-btn:hover {
     outline: none;
 }
 
 .sign-form > button:active, .add-option-btn:active,
-.save-form-btn:active, .send-btn:active{
+.save-form-btn:active, .send-btn:active, #logout-btn:active {
     background-color: #3C096C;
 }
 
@@ -165,8 +192,21 @@ a, a:hover, a:visited {
 }
 
 .form-header-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     background-color: white;
-    border-radius: 5%/20%;
+    border-radius: 10px/10px;
+}
+
+.form-header-box > input {
+    border-color: black;
+    border-style: solid;
+    border-width: 1%;
+    font-size: 20px;
+    font-family: inherit;
+    padding: 3px 8px;
+    margin: 15px 30px;
 }
 
 .form-header-box > p {
@@ -174,6 +214,10 @@ a, a:hover, a:visited {
     font-weight: 700;
     padding: 15px 0px;
     margin: 5px 20px;
+}
+
+#form-description-input {
+    font-size: 14px;
 }
 
 .description-box {
@@ -196,7 +240,7 @@ a, a:hover, a:visited {
     flex-direction: column;
     align-items: stretch;
     background-color: white;
-    border-radius: 5%/15%;
+    border-radius: 10px/10px;
     padding: 5px 10px;
     margin: 10px 0px;
 }
@@ -222,6 +266,12 @@ a, a:hover, a:visited {
     font-size: 20px;
     font-family: inherit;
     padding: 3px 8px;
+}
+
+.options-list, .questions-list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
 }
 
 .option-box {
@@ -257,6 +307,7 @@ a, a:hover, a:visited {
 }
 
 .add-option-btn {
+    display: none;
     align-self: center;
     background-color: blueviolet;
     font-family: inherit;
@@ -264,11 +315,19 @@ a, a:hover, a:visited {
     margin: 15px;
     padding: 5px 50px;
     font-weight: bolder;
-    border-radius: 4%/20%;
+    border-radius: 10px/10px;
     border-style: solid;
     border-color: white;
     color: white;
     transition: background-color 0.2s ease-out;
+}
+
+.add-option-btn.hide {
+    display: none;
+}
+
+.add-option-btn.show {
+    display: block;
 }
 
 .control-btns {
@@ -328,7 +387,8 @@ a, a:hover, a:visited {
 }
 
 .text-answer-box{
-    display: flex;   
+    display: flex;  
+    flex-direction: column;
     padding: 5px 0px;
     margin: 10px 10px;
 }
@@ -358,6 +418,10 @@ a, a:hover, a:visited {
     padding-left: 30px; 
     margin-bottom: 12px;
     cursor: pointer;
+    font-size: 18px;
+}
+
+.answer-container {
     font-size: 18px;
 }
 
@@ -426,9 +490,18 @@ a, a:hover, a:visited {
     border-radius: 100%;
 }
 
+
 @media screen and (max-device-width: 768px) {
     body {
         margin-top: 160px;
+    }
+
+    .unsigned-box {
+        font-size: 36px;
+    }
+
+    .templates-box > h3 {
+        text-align: center;
     }
 
     .grid-wrapper {
@@ -441,8 +514,7 @@ a, a:hover, a:visited {
     }
 
     .account-link {
-        padding: 30px;
-        margin: 10px 30px;
+        font-size: 3em;
     }
 
     .create-form-box {
@@ -475,8 +547,12 @@ a, a:hover, a:visited {
         margin: 20px 0px;
     }
 
-    .sign-form > button, .save-form-btn, .send-btn{
+    .sign-form > button, .save-form-btn, .send-btn {
         font-size: 3em;
+    }
+
+    #logout-btn {
+        font-size: 36px;
     }
 
     .sign-box > a {
@@ -486,6 +562,14 @@ a, a:hover, a:visited {
     .form-header-box > p {
         font-size: 3em;
         margin: 5px 40px;
+    }
+
+    .form-header-box > input {
+        font-size: 36px;
+    }
+
+    #form-description-input {
+        font-size: 24px;
     }
 
     .description-box {
@@ -541,6 +625,10 @@ a, a:hover, a:visited {
 
     .text-answer-box {
         margin: 0px 30px 20px;
+    }
+
+    .answer-container {
+        font-size: 32px;
     }
 
     .text-answer-box > input { 
