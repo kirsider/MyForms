@@ -1,3 +1,5 @@
+import Utils from '../../services/Utils.js';
+
 let SignIn = {
     render: async () => {
         return `
@@ -27,7 +29,7 @@ let SignIn = {
                 .then(function(usr) {
                     window.location.href = "/#/";
                 })
-                .catch(e => alert(e.message));
+                .catch(e => Utils.createSnackbar(e.message));
         })
     }
 

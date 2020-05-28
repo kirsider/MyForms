@@ -104,7 +104,7 @@ let Form = {
             firebase.database().ref('results/').push(result);
 
             window.location.href = "/#/";
-            alert("Your answer has been recorded!");
+            Utils.createSnackbar("Your answer has been recorded!");
         })
     }
 }

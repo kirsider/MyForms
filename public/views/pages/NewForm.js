@@ -1,3 +1,5 @@
+import Utils from '../../services/Utils.js';
+
 let NewForm = {
     render: async () => {
         return `
@@ -222,7 +224,7 @@ let NewForm = {
             firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/forms').push(formId);
 
             window.location.href = "/#/";
-            alert("Form has been created!");
+            Utils.createSnackbar("Form has been created!")
         })
     }
 }

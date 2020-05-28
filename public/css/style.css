@@ -490,7 +490,30 @@ a, a:hover, a:visited {
     border-radius: 100%;
 }
 
+/* snackbar */
 
+.snackbar {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    font-family: inherit;
+    font-size: 18px;
+    border-radius: 15px/15px;
+    border-style: solid;
+    border-width: 1%;
+    background-color:white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+    color: blueviolet;
+    padding: 18px 24px;
+    opacity: 0;
+    margin-bottom: 10px;
+    width: fit-content;
+    bottom: -100px;
+}
+  
 @media screen and (max-device-width: 768px) {
     body {
         margin-top: 160px;
@@ -664,5 +687,9 @@ a, a:hover, a:visited {
         width: 16px;
         height: 16px;
         border-width: 5px;
+    }
+
+    .snackbar {
+        font-size: 32px;
     }
 }

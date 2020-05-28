@@ -36,6 +36,7 @@ const router = async () => {
 
     let page = routes[parsedURL] ? routes[parsedURL] : Error404
     main_content.innerHTML = await page.render();
+   
     await page.after_render();
 }
 
