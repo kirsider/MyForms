@@ -8,6 +8,16 @@ let FormResult = {
         const resultsDb = (await firebase.database().ref('results/').orderByChild('fid').equalTo(fid).once('value')).val();
         const form = (await firebase.database().ref('forms/' + fid).once('value')).val();
         
+        if (!form) {
+            return `
+            <div class="form-box">
+                <div class="form-header-box">
+                    <p>Form not found :(</p>
+                </div>
+            </div>
+            `;
+        }
+        
         const results = resultsDb ? Object.values(resultsDb) : null;
 
         if (results) {

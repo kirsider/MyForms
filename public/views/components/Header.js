@@ -28,12 +28,12 @@ let Header = {
         
         firebase.auth().onAuthStateChanged(firebaseUser => { 
             if (firebaseUser) {
-                sign_in_link.style.display = "none";
-                logout_btn.style.display = "block";  
+                sign_in_link.setAttribute("class", "hide");
+                logout_btn.setAttribute("class", "show");
                 logout_btn.innerHTML = "Log out(" + firebaseUser.email + ")";
             } else {
-                sign_in_link.style.display = "block";
-                logout_btn.style.display = "none";  
+                sign_in_link.setAttribute("class", "show");
+                logout_btn.setAttribute("class", "hide");
             }
         })
     }

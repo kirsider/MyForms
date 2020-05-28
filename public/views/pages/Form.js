@@ -6,6 +6,16 @@ let Form = {
         const fid = request.id;
         const form = (await firebase.database().ref('forms/' + fid).once('value')).val();
 
+        if (!form) {
+            return `
+            <div class="form-box">
+                <div class="form-header-box">
+                    <p>Form not found :(</p>
+                </div>
+            </div>
+            `;
+        }
+
         let questions = ``;
         for (const i in form['questions']) {
             questions += `

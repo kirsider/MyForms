@@ -9,6 +9,7 @@
   "author": "kirsider <kirill.sidorenko.2013@mail.ru>",
   "license": "ISC",
   "dependencies": {
+    "@material/snackbar": "^6.0.0",
     "firebase": "^7.14.5"
   }
 }

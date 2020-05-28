@@ -20,7 +20,7 @@ let NewForm = {
                                 </div>
                                 <ul class="options-list">
                                     <li class="option-box">
-                                        <input name="option" type="text" placeholder="option/text">
+                                        <input name="option" type="text" placeholder="placeholder for input">
                                     </li>
                                 </ul>
                                 <button class="add-option-btn" type="button">Add option</button>
@@ -42,42 +42,17 @@ let NewForm = {
 
     after_render: async () => {
         const questions_list = document.getElementById("questions-list");
+        
+        setAllEventListeners();
 
-        const selects = document.getElementsByTagName("select");
-        for (const select of selects) {
-            select.addEventListener('change', onChangeSelect);
-        }
-
-        const add_option_btns = document.getElementsByClassName("add-option-btn");
-        for (const btn of add_option_btns) {
-            btn.addEventListener('click', onAddOptionBtnClick);
-        }
-
-        const add_question_btns = document.getElementsByClassName("add-question-btn");
-        for (const btn of add_question_btns) {
-            btn.addEventListener('click', onAddQuestionBtnClick, false);
-        }
-
-        const delete_question_btns = document.getElementsByClassName("delete-question-btn");
-        for (const btn of delete_question_btns) {
-            btn.addEventListener('click', onDeleteQuestionBtnClick, false);
-        }
-
-        const up_question_btns = document.getElementsByClassName("up-question-btn");
-        for (const btn of up_question_btns) {
-            btn.addEventListener('click', onUpQuestionBtnClick, false);
-        }
-
-        const down_question_btns = document.getElementsByClassName("down-question-btn");
-        for (const btn of down_question_btns) {
-            btn.addEventListener('click', onDownQuestionBtnClick, false);
-        }
+        // Event listeners for all buttons
 
         function onAddQuestionBtnClick(e) {
             const current_li = e.currentTarget.parentElement.parentElement;
             let new_li = document.createElement("li");
             new_li.setAttribute("class", "question-box");
-            new_li.innerHTML = `<div class="main-question-box">
+            new_li.innerHTML = `
+            <div class="main-question-box">
                 <div class="question-set-box">
                     <input name="qname" type="text" placeholder="Question name">
                     <select name="qtype">
@@ -102,35 +77,7 @@ let NewForm = {
 
             questions_list.insertBefore(new_li, current_li.nextElementSibling);
 
-            const selects = document.getElementsByTagName("select");
-            for (const select of selects) {
-                select.addEventListener('change', onChangeSelect);
-            }
-
-            const add_question_btns = document.getElementsByClassName("add-question-btn");
-            for (const btn of add_question_btns) {
-                btn.addEventListener('click', onAddQuestionBtnClick);
-            }
-
-            const delete_question_btns = document.getElementsByClassName("delete-question-btn");
-            for (const btn of delete_question_btns) {
-                btn.addEventListener('click', onDeleteQuestionBtnClick);
-            }
-
-            const up_question_btns = document.getElementsByClassName("up-question-btn");
-            for (const btn of up_question_btns) {
-                btn.addEventListener('click', onUpQuestionBtnClick);
-            }
-
-            const down_question_btns = document.getElementsByClassName("down-question-btn");
-            for (const btn of down_question_btns) {
-                btn.addEventListener('click', onDownQuestionBtnClick);
-            }
-
-            const add_option_btns = document.getElementsByClassName("add-option-btn");
-            for (const btn of add_option_btns) {
-                btn.addEventListener('click', onAddOptionBtnClick);
-            }
+            setAllEventListeners();
         }
 
         function onDeleteQuestionBtnClick(e) {
@@ -164,10 +111,10 @@ let NewForm = {
             if (e.currentTarget.options[0].selected) {
                 options_list.innerHTML = `
                     <li class="option-box">
-                        <input name="option" type="text" placeholder="option/text">
+                        <input name="option" type="text" placeholder="placeholder for input">
                     </li>
                 `;
-                add_option_btn.style.display = "none";
+                add_option_btn.setAttribute("class", "add-option-btn hide");
             } else if (e.currentTarget.options[1].selected || e.currentTarget.options[2].selected) {
                 options_list.innerHTML = ``;
                 let li = document.createElement("li");
@@ -183,7 +130,7 @@ let NewForm = {
                         options_list.removeChild(li);
                     })
                 }
-                add_option_btn.style.display = "block";
+                add_option_btn.setAttribute("class", "add-option-btn show");
             }
         }
 
@@ -203,6 +150,40 @@ let NewForm = {
                 })
             }
         }
+
+        function setAllEventListeners() {
+            const selects = document.getElementsByTagName("select");
+            for (const select of selects) {
+                select.addEventListener('change', onChangeSelect);
+            }
+    
+            const add_option_btns = document.getElementsByClassName("add-option-btn");
+            for (const btn of add_option_btns) {
+                btn.addEventListener('click', onAddOptionBtnClick);
+            }
+    
+            const add_question_btns = document.getElementsByClassName("add-question-btn");
+            for (const btn of add_question_btns) {
+                btn.addEventListener('click', onAddQuestionBtnClick, false);
+            }
+    
+            const delete_question_btns = document.getElementsByClassName("delete-question-btn");
+            for (const btn of delete_question_btns) {
+                btn.addEventListener('click', onDeleteQuestionBtnClick, false);
+            }
+    
+            const up_question_btns = document.getElementsByClassName("up-question-btn");
+            for (const btn of up_question_btns) {
+                btn.addEventListener('click', onUpQuestionBtnClick, false);
+            }
+    
+            const down_question_btns = document.getElementsByClassName("down-question-btn");
+            for (const btn of down_question_btns) {
+                btn.addEventListener('click', onDownQuestionBtnClick, false);
+            }
+        }
+
+        // save form event
 
         const save_form_btn = document.getElementById("save-form-btn");
         const form_name_input = document.getElementById("form-name-input");

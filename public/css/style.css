@@ -40,10 +40,19 @@ a, a:hover, a:visited {
 }
 
 .account-link {
+    display: box;
     background-color: inherit;
     float: right;
     padding: 10px 30px;
     font-size: 1.5em;
+}
+
+#sign-in-link.hide {
+    display: none;
+}
+
+#sign-in-link.show {
+    display: block;
 }
 
 .create-form-box {
@@ -152,6 +161,14 @@ a, a:hover, a:visited {
     font-size: 18px;
     border-radius: 10px/10px;
     padding: 0px 20px;
+}
+
+#logout-btn.show {
+    display: block;
+}
+
+#logout-btn.hide {
+    display: none;
 }
 
 .sign-form > button:hover, .add-option-btn:hover, 
@@ -303,6 +320,14 @@ a, a:hover, a:visited {
     border-color: white;
     color: white;
     transition: background-color 0.2s ease-out;
+}
+
+.add-option-btn.hide {
+    display: none;
+}
+
+.add-option-btn.show {
+    display: block;
 }
 
 .control-btns {
