@@ -12,7 +12,7 @@ let Home = {
         <div class="templates-box">
             <h3>Your Forms</h3>
             <div id="user-forms" class="grid-wrapper">
-          
+
             </div>
   
         </div>
@@ -35,15 +35,25 @@ let Home = {
                 `;
                 const snapshot = await firebase.database().ref('users/' + firebaseUser.uid + '/forms').once('value');
                 const formIds = snapshot.val() ? Object.values(snapshot.val()) : null;
-                
                 userForms.innerHTML = ``;
+              
                 if (formIds) {
-                    for (const fid of formIds) {
-                    const a = document.createElement("a");
-                    const fname = (await firebase.database().ref('forms/' + fid + '/fname').once('value')).val();
-                    a.setAttribute("href", "/#/formresult/" + fid);
-                    a.innerHTML = fname;
-                    userForms.appendChild(a);
+                    let linkCount = formIds.length;
+                    let links = new Array(linkCount);
+    
+                    for (let i = 0; i < linkCount; i++) {
+                        const a = document.createElement("a");
+                  
+                        a.setAttribute("class", "skeleton");
+                        userForms.appendChild(a);
+                        links[i] = a;
+                    }
+                   
+                    for (const i in formIds) {
+                        const fname = (await firebase.database().ref('forms/' + formIds[i] + '/fname').once('value')).val();
+                        links[i].setAttribute("class", "");
+                        links[i].setAttribute("href", "/#/formresult/" + formIds[i]);
+                        links[i].innerHTML = fname;
                     }
                 }
                 

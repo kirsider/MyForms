@@ -93,13 +93,29 @@ a, a:hover, a:visited {
 
 .grid-wrapper > a {
     text-decoration: none;
-    padding: 100px;
+    text-align: center;
     margin: 10px 5px;
+    width: 200px;
+    height: 200px;
     border-radius: 10%;
     background-color: white;
     border-width: 1%;
     border-style: solid;
     border-color: white;
+}
+
+.grid-wrapper > a.skeleton {
+    text-decoration: none;
+    text-align: center;
+    margin: 10px 5px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    border-width: 1%;
+    border-style: solid;
+    border-color: lightgray;
+    background-color: lightgray;
+    pointer-events: none;
 }
 
 .grid-wrapper > a:hover {
