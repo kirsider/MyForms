@@ -93,13 +93,29 @@ a, a:hover, a:visited {
 
 .grid-wrapper > a {
     text-decoration: none;
-    padding: 100px;
+    text-align: center;
     margin: 10px 5px;
+    width: 200px;
+    height: 200px;
     border-radius: 10%;
     background-color: white;
     border-width: 1%;
     border-style: solid;
     border-color: white;
+}
+
+.grid-wrapper > a.skeleton {
+    text-decoration: none;
+    text-align: center;
+    margin: 10px 5px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    border-width: 1%;
+    border-style: solid;
+    border-color: lightgray;
+    background-color: lightgray;
+    pointer-events: none;
 }
 
 .grid-wrapper > a:hover {
@@ -490,7 +506,30 @@ a, a:hover, a:visited {
     border-radius: 100%;
 }
 
+/* snackbar */
 
+.snackbar {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    font-family: inherit;
+    font-size: 18px;
+    border-radius: 15px/15px;
+    border-style: solid;
+    border-width: 1%;
+    background-color:white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+    color: blueviolet;
+    padding: 18px 24px;
+    opacity: 0;
+    margin-bottom: 10px;
+    width: fit-content;
+    bottom: -100px;
+}
+  
 @media screen and (max-device-width: 768px) {
     body {
         margin-top: 160px;
@@ -507,6 +546,16 @@ a, a:hover, a:visited {
     .grid-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
+    }
+
+    .grid-wrapper > a {
+        width: 120px;
+        height: 120px;
+    }
+
+    .grid-wrapper > a.skeleton {
+        width: 120px;
+        height: 120px;
     }
 
     .main-link { 
@@ -664,5 +713,9 @@ a, a:hover, a:visited {
         width: 16px;
         height: 16px;
         border-width: 5px;
+    }
+
+    .snackbar {
+        font-size: 32px;
     }
 }

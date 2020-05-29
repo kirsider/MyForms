@@ -1,3 +1,5 @@
+import Utils from '../../services/Utils.js';
+
 let SignUp = {
     render: async () => {
         return `
@@ -24,13 +26,13 @@ let SignUp = {
             const confirm_pass_input = document.getElementById("confirm_pass_input");
 
             if (pass_input.value !== confirm_pass_input.value) {
-                alert("'Password' and 'Confirm password' don't match!");
+                Utils.createSnackbar("'Password' and 'Confirm password' don't match!");
             } else if (email_input.value === '' || pass_input.value === '' || confirm_pass_input.value === '') {
-                alert("All fields must be filled!");
+                Utils.createSnackbar("All fields must be filled!");
             } else {
                 const auth = firebase.auth();
                 const promise = auth.createUserWithEmailAndPassword(email_input.value, pass_input.value);
-                promise.catch(e => alert(e.message));
+                promise.catch(e => Utils.createSnackbar(e.message));
                 window.location.href = '/#/';
             }
 

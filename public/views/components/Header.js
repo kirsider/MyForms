@@ -26,7 +26,7 @@ let Header = {
                 });
         })
         
-        firebase.auth().onAuthStateChanged(firebaseUser => { 
+        firebase.auth().onAuthStateChanged(async firebaseUser => { 
             if (firebaseUser) {
                 sign_in_link.setAttribute("class", "hide");
                 logout_btn.setAttribute("class", "show");
