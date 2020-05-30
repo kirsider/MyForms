@@ -49,7 +49,7 @@ let FormResult = {
                     for (const option of form['questions'][i]['options']) {
                         let cnt = 0;
                         for (const res of results) {
-                            if (res['answers'][i][0] == option) {
+                            if (res['answers'][i] && res['answers'][i][0] == option) {
                                 cnt++;
                             }
                         }
@@ -68,7 +68,7 @@ let FormResult = {
                     for (const option of form['questions'][i]['options']) {
                         let cnt = 0;
                         for (const res of results) {
-                            if (res['answers'][i].includes(option)) {
+                            if (res['answers'][i] && res['answers'][i].includes(option)) {
                                 cnt++;
                             }
                         }

@@ -33,6 +33,7 @@ let Home = {
                         New Form
                     </a>
                 `;
+
                 const snapshot = await firebase.database().ref('users/' + firebaseUser.uid + '/forms').once('value');
                 const formIds = snapshot.val() ? Object.values(snapshot.val()) : null;
                 userForms.innerHTML = ``;
