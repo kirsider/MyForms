@@ -103,90 +103,57 @@ let NewForm = {
                 li1.querySelector("input").value = q2["qname"];
                 li1.querySelector("select")[options.indexOf(q2["type"])].selected = true;
                 
-                let optlist1 = li1.querySelector(".options-list");
-                optlist1.innerHTML = ``; 
-                if (q2["type"] == "text answer") {
-                    let li = document.createElement("li");
-                    li.setAttribute("class", "option-box")
-                    let inp = document.createElement("input");
-                    inp.name = "option";
-                    inp.placeholder = "placeholder for input";
-                    inp.type = "text";
-                    inp.value = q2["options"][0];
-                    li.appendChild(inp);
-                    optlist1.appendChild(li);
-                } else {
-                    for (let ind of q2["options"]) {
-                        let li = document.createElement("li");
-                        li.setAttribute("class", "option-box")
-                        let inp = document.createElement("input");
-                        inp.name = "option";
-                        inp.placeholder = "option/text";
-                        inp.type = "text";
-                        inp.value = ind;
-
-                        let btn = document.createElement("button");
-                        btn.type = "button";
-                        btn.setAttribute("class", "delete-option-btn");
-                        
-                        li.appendChild(inp);
-                        li.appendChild(btn);
-                        optlist1.appendChild(li);
-
-                        const btns = li.getElementsByClassName("delete-option-btn");
-                        for (const btn of btns) {
-                            btn.addEventListener('click', () => {
-                                li.parentElement.removeChild(li);
-                            })
-                        }
-                    }
-                }
+                setOptionsToQuestion(li1, q2);
 
                 li2.querySelector("input").value = q1["qname"];
                 li2.querySelector("select")[options.indexOf(q1["type"])].selected = true;
 
-                let optlist2 = li2.querySelector(".options-list");
-                optlist2.innerHTML = ``; 
-                if (q1["type"] == "text answer") {
-                    let li = document.createElement("li");
-                    li.setAttribute("class", "option-box")
-                    let inp = document.createElement("input");
-                    inp.name = "option";
-                    inp.placeholder = "placeholder for input";
-                    inp.type = "text";
-                    inp.value = q1["options"][0];
-                    li.appendChild(inp);
-                    optlist2.appendChild(li);
-                } else {
-                    for (let ind of q1["options"]) {
-                        let li = document.createElement("li");
-                        li.setAttribute("class", "option-box")
-                        let inp = document.createElement("input");
-                        inp.name = "option";
-                        inp.placeholder = "option/text";
-                        inp.type = "text";
-                        inp.value = ind;
-
-                        let btn = document.createElement("button");
-                        btn.type = "button";
-                        btn.setAttribute("class", "delete-option-btn");
-                        
-                        li.appendChild(inp);
-                        li.appendChild(btn);
-                        optlist2.appendChild(li);
-
-                        const btns = li.getElementsByClassName("delete-option-btn");
-                        for (const btn of btns) {
-                            btn.addEventListener('click', () => {
-                                li.parentElement.removeChild(li);
-                            })
-                        }
-                    }
-                }
+                setOptionsToQuestion(li2, q1);
             
                 setAllEventListeners();
             }
             return false;
+        }
+
+        function setOptionsToQuestion(li, q) {
+            let optlist1 = li.querySelector(".options-list");
+            optlist1.innerHTML = ``; 
+            if (q["type"] == "text answer") {
+                let li = document.createElement("li");
+                li.setAttribute("class", "option-box")
+                let inp = document.createElement("input");
+                inp.name = "option";
+                inp.placeholder = "placeholder for input";
+                inp.type = "text";
+                inp.value = q["options"][0];
+                li.appendChild(inp);
+                optlist1.appendChild(li);
+            } else {
+                for (let ind of q["options"]) {
+                    let li = document.createElement("li");
+                    li.setAttribute("class", "option-box")
+                    let inp = document.createElement("input");
+                    inp.name = "option";
+                    inp.placeholder = "option/text";
+                    inp.type = "text";
+                    inp.value = ind;
+
+                    let btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.setAttribute("class", "delete-option-btn");
+                    
+                    li.appendChild(inp);
+                    li.appendChild(btn);
+                    optlist1.appendChild(li);
+
+                    const btns = li.getElementsByClassName("delete-option-btn");
+                    for (const btn of btns) {
+                        btn.addEventListener('click', () => {
+                            li.parentElement.removeChild(li);
+                        })
+                    }
+                }
+            }
         }
 
         function onAddQuestionBtnClick(e) {
@@ -206,7 +173,7 @@ let NewForm = {
                 </div>
                 <ul class="options-list">
                     <li class="option-box">
-                        <input name="option" type="text" placeholder="option/text">
+                        <input name="option" type="text" placeholder="placeholder for input">
                     </li>
                 </ul>
                 <button class="add-option-btn" type="button">Add option</button>
@@ -248,7 +215,6 @@ let NewForm = {
 
         function onChangeSelect(e) {
             const options_list = e.currentTarget.parentElement.nextElementSibling;
-            console.log(options_list);
             const add_option_btn = options_list.nextElementSibling;
 
             if (e.currentTarget.options[0].selected) {
@@ -335,7 +301,6 @@ let NewForm = {
             }
 
             setAllDragNDropEventListeners();
-            
         }
 
         // save form event

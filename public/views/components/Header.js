@@ -21,7 +21,7 @@ let Header = {
 
         logout_btn.addEventListener('click', () => {
             firebase.auth().signOut()
-                .then(function(usr) {
+                .then(function() {
                     window.location.href = "/#/";
                 });
         })

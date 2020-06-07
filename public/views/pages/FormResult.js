@@ -35,13 +35,15 @@ let FormResult = {
                     box += `<div class="text-answer-box">`;
                     let cnt = 1;
                     for (const res of results) {
-                        let label = `
-                        <label class="answer-container">
-                             <b>${cnt + ". "}</b> ${res['answers'][i][0]}
-                        </label> 
-                        `;
-                        box += label;
-                        cnt++;
+                        if (res['answers']) {
+                            let label = `
+                            <label class="answer-container">
+                                <b>${cnt + ". "}</b> ${res['answers'][i][0]}
+                            </label> 
+                            `;
+                            box += label;
+                            cnt++;
+                        }
                     }
                     box += `</div>`;
                 } else if (form['questions'][i]['type'] == "single choice") {
@@ -49,7 +51,7 @@ let FormResult = {
                     for (const option of form['questions'][i]['options']) {
                         let cnt = 0;
                         for (const res of results) {
-                            if (res['answers'][i] && res['answers'][i][0] == option) {
+                            if (res['answers'] && res['answers'][i] && res['answers'][i][0] == option) {
                                 cnt++;
                             }
                         }
@@ -68,7 +70,7 @@ let FormResult = {
                     for (const option of form['questions'][i]['options']) {
                         let cnt = 0;
                         for (const res of results) {
-                            if (res['answers'][i] && res['answers'][i].includes(option)) {
+                            if (res['answers'] && res['answers'][i] && res['answers'][i].includes(option)) {
                                 cnt++;
                             }
                         }
@@ -179,6 +181,7 @@ let FormResult = {
     },
 
     after_render: async () => {
+        // add event listeners for upcoming buttons ("disable form", "delete form")
     }
 }
 
