@@ -519,7 +519,7 @@ a, a:hover, a:visited {
     border-style: solid;
     border-width: 1%;
     background-color:white;
-    position: absolute;
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     justify-content: center;

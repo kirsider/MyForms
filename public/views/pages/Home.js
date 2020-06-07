@@ -10,7 +10,7 @@ let Home = {
         </div>
   
         <div class="templates-box">
-            <h3>Your Forms</h3>
+            <h3 id="h3"></h3>
             <div id="user-forms" class="grid-wrapper">
 
             </div>
@@ -23,7 +23,8 @@ let Home = {
     after_render: async () => {
         const userForms = document.getElementById("user-forms");
         const new_form_box = document.getElementById("new-form-box");
-        
+        const h3 = document.getElementById("h3");
+
         firebase.auth().onAuthStateChanged(async firebaseUser => { 
             if (firebaseUser) {
                 new_form_box.innerHTML = `
@@ -37,6 +38,7 @@ let Home = {
                 const snapshot = await firebase.database().ref('users/' + firebaseUser.uid + '/forms').once('value');
                 const formIds = snapshot.val() ? Object.values(snapshot.val()) : null;
                 userForms.innerHTML = ``;
+                h3.innerHTML = `Your Forms`;
               
                 if (formIds) {
                     let linkCount = formIds.length;
@@ -65,6 +67,7 @@ let Home = {
                     </div>
                 `;
                 userForms.innerHTML = ``;
+                h3.innerHTML = `Here will be your forms`;
             }
         })
         

@@ -7,10 +7,10 @@ let Header = {
             </a>
         </div>
         <div id="acc_link" class="account-link">
-            <a id="sign-in-link" href='/#/signin'>
+            <a id="sign-in-link" href='/#/signin' class="hide">
                 Sign In
             </a>
-            <button id="logout-btn"></button>
+            <button id="logout-btn" class="hide"></button>
         </div>
         `;
     },
