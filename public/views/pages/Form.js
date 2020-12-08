@@ -6,6 +6,9 @@ let Form = {
         const fid = request.id;
         const form = (await firebase.database().ref('forms/' + fid).once('value')).val();
 
+        const dbResponse = await fetch('https://localhost:44363/weatherforecast').then(response => response.json());
+        console.log(dbResponse);
+
         if (!form) {
             return `
             <div class="form-box">
