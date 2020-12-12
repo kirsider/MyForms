@@ -5,9 +5,14 @@ let FormResult = {
         const request = Utils.parseRequestURL()
         const fid = request.id;
 
-        const resultsDb = (await firebase.database().ref('results/').orderByChild('fid').equalTo(fid).once('value')).val();
-        const form = (await firebase.database().ref('forms/' + fid).once('value')).val();
+        let results = await fetch('https://localhost:44363/api/forms/' + fid + '/results').then(response => response.json());
         
+        const form = await fetch('https://localhost:44363/api/forms/' + fid).then(response => response.json());
+    
+        for (let i in results) {
+            results[i].answers = JSON.parse(results[i].answers);
+        }
+
         if (!form) {
             return `
             <div class="form-box">
@@ -18,8 +23,6 @@ let FormResult = {
             `;
         }
         
-        const results = resultsDb ? Object.values(resultsDb) : null;
-
         if (results) {
             let questions = ``;
             for (const i in form['questions']) {

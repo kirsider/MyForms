@@ -375,13 +375,20 @@ let NewForm = {
         
         const save_form_btn = document.getElementById("save-form-btn");
         
-        save_form_btn.addEventListener('click', () => {
+        save_form_btn.addEventListener('click', async () => {
             let form = getFormData();
 
-            const formId = firebase.database().ref('forms/').push(form).key;
-            console.log(formId);
-            firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/forms').push(formId);
-
+            const response = await fetch('https://localhost:44363/api/forms', {
+                method: 'POST',
+                body: JSON.stringify({
+                    name: form.fname,
+                    description: form.description,
+                    userid: form.uid,
+                    questions: form.questions
+                }),
+                headers: {'Content-Type': 'application/json' }
+            });
+        
             window.location.href = "/#/";
             Utils.createSnackbar("Form has been created!")
         })

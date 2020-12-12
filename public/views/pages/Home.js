@@ -34,12 +34,13 @@ let Home = {
                     </a>
                 `;
 
-                const snapshot = await firebase.database().ref('users/' + firebaseUser.uid + '/forms').once('value');
-                const formIds = snapshot.val() ? Object.values(snapshot.val()) : null;
-                userForms.innerHTML = ``;
               
-                if (formIds) {
-                    let linkCount = formIds.length;
+                userForms.innerHTML = ``;
+
+                const DbForms = await fetch('https://localhost:44363/api/forms/userforms/' + firebaseUser.uid).then(response => response.json()); 
+              
+                if (DbForms) {
+                    let linkCount = DbForms.length;
                     let links = new Array(linkCount);
     
                     for (let i = 0; i < linkCount; i++) {
@@ -50,10 +51,10 @@ let Home = {
                         links[i] = a;
                     }
                    
-                    for (const i in formIds) {
-                        const fname = (await firebase.database().ref('forms/' + formIds[i] + '/fname').once('value')).val();
+                    for (const i in DbForms) {
+                        const fname = DbForms[i].fname;
                         links[i].setAttribute("class", "");
-                        links[i].setAttribute("href", "/#/formresult/" + formIds[i]);
+                        links[i].setAttribute("href", "/#/formresult/" + DbForms[i].id);
                         links[i].innerHTML = fname;
                     }
                 }
