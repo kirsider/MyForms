@@ -1,5 +1,5 @@
 # MyForms
 
-ИТиРОД, 6й семестр, гр.753503, Сидоренко Кирилл Александрович
+Frontend part of coure project My Forms in the DM&DBMS discipline.
 
 https://my-forms-app.web.app/#/

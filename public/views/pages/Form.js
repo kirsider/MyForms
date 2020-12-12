@@ -4,8 +4,9 @@ let Form = {
     render: async () => {
         const request = Utils.parseRequestURL()
         const fid = request.id;
-        const form = (await firebase.database().ref('forms/' + fid).once('value')).val();
-
+        
+        const form = await fetch('https://localhost:44363/api/forms/' + fid).then(response => response.json());
+        
         if (!form) {
             return `
             <div class="form-box">
@@ -87,7 +88,7 @@ let Form = {
 
         const send_form_btn = document.getElementById("send-form-btn");
 
-        send_form_btn.addEventListener('click', () => {   
+        send_form_btn.addEventListener('click', async () => {   
             const answerForm = document.getElementById("form");
             const formData = new FormData(answerForm);
 
@@ -101,7 +102,17 @@ let Form = {
                 result["answers"][name].push(value);
             }
 
-            firebase.database().ref('results/').push(result);
+            console.log(result.answers);
+            console.log(result.fid);
+
+            const response = await fetch('https://localhost:44363/api/forms/results', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'fid': parseInt(result.fid),
+                    'answers': JSON.stringify(result.answers)
+                }),
+                headers: {'Content-Type': 'application/json' }
+            });
 
             window.location.href = "/#/";
             Utils.createSnackbar("Your answer has been recorded!");
